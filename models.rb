@@ -7,6 +7,7 @@ class Profile < ActiveRecord::Base
 	belongs_to :user
   end
 
-class Post < ActiveRecord::Base
+class Gab < ActiveRecord::Base
 	belongs_to :user
+	has_many :users
   end

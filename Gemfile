@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+ruby '2.1.2'
 
 gem 'sinatra'
 
@@ -7,8 +8,6 @@ gem 'activerecord'
 
 gem 'sinatra-activerecord'
 # the adapter between Sinatra and the ActiveRecord library
-
-
 
 gem 'rake'
 # a command line task runner

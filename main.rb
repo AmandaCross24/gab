@@ -6,19 +6,17 @@ require './models'
 
 
 # set the db name (will be created if the db does not already exist)
-set :database, "sqlite3:microblog.sqlite3"
+set :database, "sqlite3:gab.sqlite3"
 
 # Current user sesssion
-# enable :sessions
+enable :sessions
 set :sessions, true
-Use Rack::Flash, sweep: true
+use Rack::Flash, sweep: true
 
 
 def current_user
 	if session[:user_id]
-		User.find(session[:user_id])
-	else
-		nil
+		User.find(session[:user_id]) ? nil
 	end
 end
 
@@ -32,25 +30,31 @@ get '/' do
 end
 
 post '/login' do
-	my_user = User.find_by fname: params[:fname]
+	my_user = User.find_by email: params[:email]
 	if my_user and my_user.password == params[:password]
 		session[:user_id] = my_user.id
+		redirect to ('/user')
 	else
-		redirect("/signup")
+		flash[:notice] = "Try Again"
 	end
 end
 
+get '/signup' do
+	erb :signup
+end
+
 post '/signup' do
-	User.create(params[:user])
-	session[:user_id] = new_user.id
+	User.create(fname: params[:fname], lname: params[:lname], email: params[:email], password: params[:password])
+	# session[:user_id] = new_user.id
 	flash[:notice] = "New account created"
+	redirect to ('/user')
 end
 
 get '/user' do
 	erb :user
 end
 
-get 'logout' do
+post '/logout' do
 	session[:user_id] = nil
 	"You have been logged out"
 end

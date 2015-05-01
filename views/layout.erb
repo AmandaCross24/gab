@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<nav>
+	<% if current_user %>
+		<span>Hello <%= current_user %> </span> |
+		<a href="/logout">Logout</a>
+		<% else %>
+			<a href="/">Login</a> |
+		<% end %>
+</nav>
+
+<div class="content">
+
+<%= yield %> <!-- Text inputted by individual pages-->
+
+</html>
+</head>
