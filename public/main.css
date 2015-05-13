@@ -1,0 +1,27 @@
+header {
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #CCEDF0;
+	padding: 1em;
+}
+
+header a {
+	color: blue;
+	text-decoration: none;
+}
+
+body {
+	font-family: arial;
+	font-size: 16px;
+}
+
+.main {
+	margin: 75px auto;
+	width: 800px;
+	/*setting width gives page L and R margins however text and boxes dont rearrange to fit window unless no width is set*/
+}
+
+.notice {color: red;}
+.content {}

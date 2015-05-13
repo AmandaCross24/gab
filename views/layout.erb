@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Gab</title>
-<nav>
-	<% if current_user %>
-		<span>Hello <%= current_user %> </span> |
-		<a href="/logout">Logout</a>
-		<% else %>
-			<a href="/">Login</a> |
-		<% end %>
-</nav>
+	<meta charset="UTF-8">
+	<title>Gab</title>
+	<link rel="stylesheet" type="text/css" href="/main.css">
+</head>
 
-<div class="content">
+<body>
+	<header>
+		<nav>
+			<% if current_user %>
+			<span>Hello <%= current_user.fname %> </span> |
+			<a href="/logout">Logout</a>
+			<% else %>
+				<a href="/">Login</a> | <a href="/signup">Signup</a>
+			<% end %>
+		</nav>
+	</header>
 
-<%= yield %> <!-- Text inputted by individual pages-->
+	<div class="main">
+		<!-- Renders notices from individual pages -->
+		<div class="notice">
+			<h3> <%= flash[:notice]%> </h3>
+		</div>
+
+		<!-- Renders content from individual pages -->
+		<div class="content">
+			<%= yield %>
+		</div>
+	</div>
+</body>
 
 </html>
-</head>
