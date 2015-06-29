@@ -14,6 +14,7 @@ set :sessions, true
 
 use Rack::Flash, sweep: true
 
+
 # def current_user
 # 	if session[:user_id]
 # 		User.find(session[:user_id])
@@ -27,13 +28,14 @@ def current_user
 	session[:user_id] ? User.find(session[:user_id]) : nil
 end
 
+
 get '/' do
 	erb :home
 end
 
 post '/login' do
 	my_user = User.find_by email: params[:email]
-	if my_user and my_user.password == params[:password]
+	if my_user && my_user.password == params[:password]
 		session[:user_id] = my_user.id
 		redirect to ('/user')
 	else
@@ -43,6 +45,15 @@ end
 
 get '/user' do
 	erb :user
+end
+
+get '/post' do
+	erb :post
+end
+
+post '/post' do
+	post = Post.create(body: params[:body]) 
+	redirect to '/user'
 end
 
 get '/signup' do
@@ -67,6 +78,56 @@ get '/logout' do
 	flash[:notice] = "You have logged out"
 	redirect to ('/')
 end
+
+get '/delete' do
+	my_user = User.find_by_id params[:id] 
+	erb :delete
+end
+
+post '/delete' do 
+	my_user = User.find_by_id params[:id] 
+	if my_user == current_user
+	my_user.destroy
+	flash[:notice] = "Your account has been deleted"
+	redirect to ('/destroy')
+	else	
+	flash[:notice] = "There was a problem deleting your account"
+	redirect to ('/delete')
+end
+end
+
+
+get '/destroy' do
+	erb :destroy
+end
+
+get '/feed' do
+	post = Post.all
+	erb :feed
+end
+
+
+get '/edit' do
+	erb :edit
+end
+
+post '/edit' do
+	my_user = current_user
+	redirect to ('/user')
+end
+
+
+put '/edit' do
+  my_user = User.get(params[:id])
+  if my_user.update_attributes(params[:user])
+  	flash[:notice] = "Your account was successfully updated."
+    redirect to ('/user')
+  else
+  	flash[:notice] = "There was a problem updating your account"
+  	redirect to ('/edit')
+  end
+end
+
 
 # get '/loggedin' do
 # 	"You are logged in #{current_user.fname if current_user}!"

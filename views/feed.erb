@@ -1,0 +1,11 @@
+<div class="greeting">
+<h1>Let's Get Gabbing</h2>
+<div>
+
+
+	<% Post.all.each do |post| %>
+	<br>
+	<%= post.body %> 
+	<br>
+	
+	<% end %>

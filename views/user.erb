@@ -1,4 +1,41 @@
-<h1>Hello <%= current_user.fname %></h1>
+<br>
+<div class="greeting">
+<h1>Hello <%= current_user.fname %></h1> 
+</div>
 
-<h3>Below are your posts</h3>
+<div class="post">
+<br>
+<h2>Gab Away!</h2>
+</div>
+
+<form action="/user" method="POST">
+
+	<label type="text" for="body">Body </label>
+	<input type="text" name="body" required></input>
+
+	<input type="submit" value="Get Gabbing"></input>
+
+</form>
+
+</div>
+
+
+
+<br>
+
+
+<h3>Below are your posts<h3>
+
+
+	<% Post.all.each do |post| %></h1> 
+	<br>
+	<%= post.body  %>
+	
+	<% end %>
+
+
+
+
+
+	
 

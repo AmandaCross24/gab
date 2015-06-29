@@ -1,0 +1,42 @@
+<div class="notice">
+<h3> <%= flash[:notice] if flash[:notice] %> </h3>
+</div> 
+
+<div class="greeting">
+<h1>Edit Your Account Below!</h1>
+</div>
+
+
+	<form method="post" action="/edit">
+
+	<input type="hidden" name="_method" value="put">
+
+	<%= "Your Account Details" %><br>
+	<br>
+	
+	<label type="text" for="fname">First Name </label>
+	<input type="text" name="fname" required></input>
+<%= current_user.fname %><br>
+	<br>	
+
+	
+	<label type="text" for="lname">Last Name </label>
+	<input type="text" name="lname" required></input>
+	<%= current_user.lname %><br>
+<br>
+
+	
+
+	<label type="text" for="email">Email </label>
+	<input type="email" name="email" required></input>
+<%= current_user.email %><br>
+<br>
+	
+
+	<label type="text" for="password">Password </label>
+	<input type="password" name="password" required></input><br>
+	<br>
+	
+	<button type="submit" value="update">Edit Your Account</button>
+
+</form>

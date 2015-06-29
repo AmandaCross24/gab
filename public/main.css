@@ -8,13 +8,15 @@ header {
 }
 
 header a {
-	color: blue;
+	color: #000066;
 	text-decoration: none;
+	font-size: 15px;
 }
 
 body {
 	font-family: arial;
-	font-size: 16px;
+	font-size: 19px;
+	background-color: #D8D8D8; 
 }
 
 .main {
@@ -23,5 +25,29 @@ body {
 	/*setting width gives page L and R margins however text and boxes dont rearrange to fit window unless no width is set*/
 }
 
-.notice {color: red;}
+.notice {color: #660066;}
 .content {}
+
+.post {
+	margin-top: 25px;
+}
+
+.heading {
+	float: right;
+	margin-right: 15px;
+	margin-bottom: 0px;
+}
+
+.heading2 {
+	float: left;
+}
+
+.sidebar {
+	clear: both;
+	float: left;
+	display: block;
+}
+
+.greeting {
+	margin-top: 200px;
+}

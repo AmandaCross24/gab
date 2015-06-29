@@ -1,0 +1,24 @@
+
+
+
+<br>
+<div class="notice">
+	<%= flash[:notice] if flash[:notice] %>
+</div>
+
+<br>
+<div class="greeting">
+<h1>Delete Your Account Below</h1>	
+</div>
+
+	<form method="post" action="/delete">
+
+	<input type="hidden" naem="_method" value="delete">
+
+	<%= "Your Account Details" %>
+
+
+	<button type="submit">Delete Your Account</button>
+
+</form>
+
